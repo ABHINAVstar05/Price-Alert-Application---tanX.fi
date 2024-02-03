@@ -76,4 +76,22 @@ def delete(request) :
 
 @api_view(['POST', ])  # user needs to enter username and other optional data to fetch his/her alerts. 
 def fetch(request) :
-    pass
+    data = request.data
+
+    username = data['username']
+    alert_status = data.get('alert_status', None)
+    
+    try :
+        user = User.objects.get(username = username)
+        data['username'] = user.id
+    except User.DoesNotExist :
+        return Response({'Message': 'User does not exist.'})
+
+    if alert_status is not None :
+        alert = Alert.objects.filter(username = data['username'], alert_status = alert_status)
+    else :
+        alert = Alert.objects.filter(username = data['username'])
+
+    serializer = AlertSerializer(alert, many = True)
+    return Response({'username': username, 'alert details': serializer.data})
+    
