@@ -40,6 +40,10 @@ INSTALLED_APPS = [
 
     'alert_app',
     'rest_framework',
+
+    # For localizations or translations
+    
+    'rest_framework_simplejwt', 
 ]
 
 MIDDLEWARE = [
@@ -128,3 +132,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# For adding JWT Authentication to the project
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
