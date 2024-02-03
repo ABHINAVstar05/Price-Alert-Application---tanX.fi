@@ -23,10 +23,9 @@ def create(request) :
     username = data['username']
     try :
         user = User.objects.get(username = username)
-        id = user.id
-    except :
-        id = -1
-    data['username'] = id
+        data['username'] = user.id
+    except User.DoesNotExist :
+        return Response({'Message': 'User does not exist.'})
 
     deserialized = AlertSerializer(data = data)
 
@@ -41,9 +40,6 @@ def create(request) :
                 'alert_status': deserialized.data['alert_status']}
             })
     
-    elif id == -1 :
-        return Response({'Message': 'User does not exist.'})
-    
     else :
         return Response(deserialized.errors)
     
@@ -52,7 +48,28 @@ def create(request) :
     
 @api_view(['DELETE', ])
 def delete(request) :
-    pass
+    data = request.data
+
+    username = data['username']
+    try :
+        user = User.objects.get(username = username)
+        data['username'] = user.id
+    except User.DoesNotExist :
+        return Response({'Message': 'User does not exist.'})
+
+    try :
+        alert = Alert.objects.get(username = data['username'], alert_purpose = data['alert_purpose'])
+        alert.delete()
+        return Response({
+            'Message' : 'Alert with below details deleted successfully.',
+            'Details': {
+                'username': username,
+                'alert_purpose': data['alert_purpose']
+                }
+            })
+
+    except Alert.DoesNotExist :
+        return Response({'Message': 'No such alert exists.'})
 
 
 # API endpoint to fetch user's alert records.
