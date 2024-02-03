@@ -11,8 +11,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.hashers import make_password, check_password
-from .models import *
-from .serializers import *
+from .models import User
+from .serializers import UserSerializer, LoginSerializer
 
 # signup api_view
 
