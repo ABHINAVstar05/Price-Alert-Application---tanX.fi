@@ -30,7 +30,3 @@ class Alert(models.Model) :
     def __str__(self):
         return f"{self.username} ({self.alert_purpose})"
     
-    def trigger_email(self):
-        # Implementation to send email notification
-        pass
-    

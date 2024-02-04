@@ -1,7 +1,9 @@
-from django.urls import path
+from django.urls import re_path
 
-from .socket_connection import get_prices
+from .socket_connection import *
+
+# routing.py
 
 websocket_urlpatterns = [
-    path('ws/real-time-data/', get_prices),
+    re_path(r'ws/binance/$', main),
 ]

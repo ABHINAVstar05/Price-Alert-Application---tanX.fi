@@ -147,14 +147,24 @@ REST_FRAMEWORK = {
     )
 }
 
-
 # This setting tells Django Channels which backend
 # to use for storing and distributing messages between
 # the client and the server.
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        },
+        "ROUTING": "project.routing.websocket_urlpatterns",
     },
 }
-
 ASGI_APPLICATION = 'project.asgi.application'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = 'BTC.price.alert@gmail.com'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "myemail@gmail.com"
+EMAIL_HOST_PASSWORD = "myemailpassword"
