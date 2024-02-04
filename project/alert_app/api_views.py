@@ -11,7 +11,7 @@ This file has 2 api_views namely,
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import UserSerializer, AlertSerializer
+from .serializers import AlertSerializer
 from .models import *
 
 # API endpoint to create alert.

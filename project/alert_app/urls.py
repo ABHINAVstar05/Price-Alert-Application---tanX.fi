@@ -13,4 +13,5 @@ urlpatterns = [
     path('create/', create),
     path('delete/', delete),
     path('fetch/', fetch),
+
 ]
