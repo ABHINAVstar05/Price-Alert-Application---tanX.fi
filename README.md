@@ -23,7 +23,7 @@
 8. Finally, use the command `python manage.py runserver` to start a local server to use the project.
 
 ### Binance's WebSocket running terminal status
-|  |
+| ![WebSocket working terminal status](https://github.com/ABHINAVstar05/Price-Alert-Application---tanX.fi/assets/75786072/8f818273-a2e3-4adb-ab90-fa7787ca9e7f) |
 |:--:| 
 | *Binance's WebSocket working terminal status* |
 > The WebSocket is fetching real-time price update from [wss://stream.binance.com:9443/ws/btcusdt@kline_1s](wss://stream.binance.com:9443/ws/btcusdt@kline_1s).
